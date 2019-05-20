@@ -40,11 +40,14 @@
             this.rbSp = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.rBOther = new System.Windows.Forms.RadioButton();
+            this.pBOther = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMhp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIyi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOther)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -168,11 +171,33 @@
             this.lblTitle.TabIndex = 4;
             this.lblTitle.Text = "TÜRKİYE CUMHURİYETİ İL BELEDİYE BAŞKAN SEÇİM FORMU";
             // 
+            // rBOther
+            // 
+            this.rBOther.AutoSize = true;
+            this.rBOther.Location = new System.Drawing.Point(693, 210);
+            this.rBOther.Name = "rBOther";
+            this.rBOther.Size = new System.Drawing.Size(50, 17);
+            this.rBOther.TabIndex = 6;
+            this.rBOther.TabStop = true;
+            this.rBOther.Text = "Diğer";
+            this.rBOther.UseVisualStyleBackColor = true;
+            // 
+            // pBOther
+            // 
+            this.pBOther.Location = new System.Drawing.Point(668, 94);
+            this.pBOther.Name = "pBOther";
+            this.pBOther.Size = new System.Drawing.Size(100, 100);
+            this.pBOther.TabIndex = 5;
+            this.pBOther.TabStop = false;
+            this.pBOther.Click += new System.EventHandler(this.pBOther_Click);
+            // 
             // FormElection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 398);
+            this.ClientSize = new System.Drawing.Size(821, 398);
+            this.Controls.Add(this.rBOther);
+            this.Controls.Add(this.pBOther);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rbSp);
@@ -193,6 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMhp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIyi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOther)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,5 +237,7 @@
         private System.Windows.Forms.RadioButton rbSp;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.RadioButton rBOther;
+        private System.Windows.Forms.PictureBox pBOther;
     }
 }

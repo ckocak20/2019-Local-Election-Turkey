@@ -40,11 +40,14 @@
             this.pbMhp = new System.Windows.Forms.PictureBox();
             this.pbChp = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.rBOther = new System.Windows.Forms.RadioButton();
+            this.pBOther = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbSp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbIyi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMhp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOther)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -168,11 +171,33 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // rBOther
+            // 
+            this.rBOther.AutoSize = true;
+            this.rBOther.Location = new System.Drawing.Point(737, 241);
+            this.rBOther.Name = "rBOther";
+            this.rBOther.Size = new System.Drawing.Size(50, 17);
+            this.rBOther.TabIndex = 18;
+            this.rBOther.TabStop = true;
+            this.rBOther.Text = "Diğer";
+            this.rBOther.UseVisualStyleBackColor = true;
+            // 
+            // pBOther
+            // 
+            this.pBOther.Location = new System.Drawing.Point(712, 125);
+            this.pBOther.Name = "pBOther";
+            this.pBOther.Size = new System.Drawing.Size(100, 100);
+            this.pBOther.TabIndex = 17;
+            this.pBOther.TabStop = false;
+            this.pBOther.Click += new System.EventHandler(this.pBOther_Click);
+            // 
             // FormElection2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 428);
+            this.ClientSize = new System.Drawing.Size(871, 428);
+            this.Controls.Add(this.rBOther);
+            this.Controls.Add(this.pBOther);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rbSp);
@@ -193,6 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMhp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBOther)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +238,7 @@
         private System.Windows.Forms.PictureBox pbMhp;
         private System.Windows.Forms.PictureBox pbChp;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.RadioButton rBOther;
+        private System.Windows.Forms.PictureBox pBOther;
     }
 }

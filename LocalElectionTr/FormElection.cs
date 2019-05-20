@@ -26,7 +26,7 @@ namespace LocalElectionTr
             pbMhp.Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + @"\images\mhp.jpg");
             pbIyi.Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + @"\images\iyi.jpg");
             pbSp.Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + @"\images\sp.jpg");
-
+            pBOther.Image = Image.FromFile(System.IO.Directory.GetCurrentDirectory() + @"\images\other.jpg");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,6 +57,10 @@ namespace LocalElectionTr
                     else if (rbSp.Checked)
                     {
                         query.il_saadet_oy++;
+                    }
+                    else if (rBOther.Checked)
+                    {
+                        query.il_other++;
                     }
                     var query2 = db.user.Where(u => u.userID == FormOy.userID).First();
                     query2.isUsed = true;
@@ -103,6 +107,11 @@ namespace LocalElectionTr
         private void pbSp_Click(object sender, EventArgs e)
         {
             rbSp.Checked = true;
+        }
+
+        private void pBOther_Click(object sender, EventArgs e)
+        {
+            rBOther.Checked = true;
         }
     }
 }
