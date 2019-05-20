@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cba83f2f94a64a3b933ee0b60ba97f84" Name="Diagram1">
+        <EntityTypeShape EntityType="local_electionsModel.ilceler" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="local_electionsModel.iller" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="local_electionsModel.user" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="local_electionsModel.fk_il_no" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="local_electionsModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="local_electionsModel.FK_user_ilceler" />
+        <AssociationConnector Association="local_electionsModel.FK_user_iller" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

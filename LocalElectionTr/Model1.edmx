@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="local_electionsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ilceler">
+          <Key>
+            <PropertyRef Name="ilce_no" />
+          </Key>
+          <Property Name="ilce_no" Type="int" Nullable="false" />
+          <Property Name="ilce_isim" Type="varchar" MaxLength="50" />
+          <Property Name="il_no" Type="int" Nullable="false" />
+          <Property Name="ilce_akp_oy" Type="int" />
+          <Property Name="ilce_chp_oy" Type="int" />
+          <Property Name="ilce_mhp_oy" Type="int" />
+          <Property Name="ilce_iyi_oy" Type="int" />
+          <Property Name="ilce_saadet_oy" Type="int" />
+          <Property Name="ilce_other" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="iller">
+          <Key>
+            <PropertyRef Name="il_no" />
+          </Key>
+          <Property Name="il_no" Type="int" Nullable="false" />
+          <Property Name="il_isim" Type="varchar" MaxLength="50" />
+          <Property Name="il_akp_oy" Type="int" />
+          <Property Name="il_chp_oy" Type="int" />
+          <Property Name="il_mhp_oy" Type="int" />
+          <Property Name="il_ip_oy" Type="int" />
+          <Property Name="il_saadet_oy" Type="int" />
+          <Property Name="il_other" Type="int" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_tc" Type="char" MaxLength="11" />
+          <Property Name="user_fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_lname" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_gender" Type="nchar" MaxLength="10" />
+          <Property Name="user_il" Type="int" />
+          <Property Name="user_ilce" Type="int" />
+          <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isUsed" Type="bit" />
+        </EntityType>
+        <Association Name="fk_il_no">
+          <End Role="iller" Type="Self.iller" Multiplicity="1" />
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="il_no" />
+            </Principal>
+            <Dependent Role="ilceler">
+              <PropertyRef Name="il_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_ilceler">
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ilceler">
+              <PropertyRef Name="ilce_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="user_ilce" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_iller">
+          <End Role="iller" Type="Self.iller" Multiplicity="0..1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="il_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="user_il" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="local_electionsModelStoreContainer">
+          <EntitySet Name="ilceler" EntityType="Self.ilceler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="iller" EntityType="Self.iller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_il_no" Association="Self.fk_il_no">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="ilceler" EntitySet="ilceler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_ilceler" Association="Self.FK_user_ilceler">
+            <End Role="ilceler" EntitySet="ilceler" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_iller" Association="Self.FK_user_iller">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="local_electionsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ilceler">
+          <Key>
+            <PropertyRef Name="ilce_no" />
+          </Key>
+          <Property Name="ilce_no" Type="Int32" Nullable="false" />
+          <Property Name="ilce_isim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="il_no" Type="Int32" Nullable="false" />
+          <Property Name="ilce_akp_oy" Type="Int32" />
+          <Property Name="ilce_chp_oy" Type="Int32" />
+          <Property Name="ilce_mhp_oy" Type="Int32" />
+          <Property Name="ilce_iyi_oy" Type="Int32" />
+          <Property Name="ilce_saadet_oy" Type="Int32" />
+          <Property Name="ilce_other" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="iller" Relationship="Self.fk_il_no" FromRole="ilceler" ToRole="iller" />
+          <NavigationProperty Name="user" Relationship="local_electionsModel.FK_user_ilceler" FromRole="ilceler" ToRole="user" />
+        </EntityType>
+        <EntityType Name="iller">
+          <Key>
+            <PropertyRef Name="il_no" />
+          </Key>
+          <Property Name="il_no" Type="Int32" Nullable="false" />
+          <Property Name="il_isim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="il_akp_oy" Type="Int32" />
+          <Property Name="il_chp_oy" Type="Int32" />
+          <Property Name="il_mhp_oy" Type="Int32" />
+          <Property Name="il_ip_oy" Type="Int32" />
+          <Property Name="il_saadet_oy" Type="Int32" />
+          <Property Name="il_other" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="ilceler" Relationship="Self.fk_il_no" FromRole="iller" ToRole="ilceler" />
+          <NavigationProperty Name="user" Relationship="local_electionsModel.FK_user_iller" FromRole="iller" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_lname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isUsed" Type="Boolean" />
+          <Property Name="user_tc" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="user_il" Type="Int32" />
+          <Property Name="user_ilce" Type="Int32" />
+          <NavigationProperty Name="ilceler" Relationship="local_electionsModel.FK_user_ilceler" FromRole="user" ToRole="ilceler" />
+          <NavigationProperty Name="iller" Relationship="local_electionsModel.FK_user_iller" FromRole="user" ToRole="iller" />
+        </EntityType>
+        <Association Name="fk_il_no">
+          <End Role="iller" Type="Self.iller" Multiplicity="1" />
+          <End Role="ilceler" Type="Self.ilceler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="il_no" />
+            </Principal>
+            <Dependent Role="ilceler">
+              <PropertyRef Name="il_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="localelectionsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ilceler" EntityType="Self.ilceler" />
+          <EntitySet Name="iller" EntityType="Self.iller" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="fk_il_no" Association="Self.fk_il_no">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="ilceler" EntitySet="ilceler" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="local_electionsModel.sysdiagrams" />
+          <AssociationSet Name="FK_user_ilceler" Association="local_electionsModel.FK_user_ilceler">
+            <End Role="ilceler" EntitySet="ilceler" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_iller" Association="local_electionsModel.FK_user_iller">
+            <End Role="iller" EntitySet="iller" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_user_ilceler">
+          <End Type="local_electionsModel.ilceler" Role="ilceler" Multiplicity="0..1" />
+          <End Type="local_electionsModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ilceler">
+              <PropertyRef Name="ilce_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="user_ilce" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_iller">
+          <End Type="local_electionsModel.iller" Role="iller" Multiplicity="0..1" />
+          <End Type="local_electionsModel.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="iller">
+              <PropertyRef Name="il_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="user_il" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="local_electionsModelStoreContainer" CdmEntityContainer="localelectionsEntities">
+          <EntitySetMapping Name="ilceler">
+            <EntityTypeMapping TypeName="local_electionsModel.ilceler">
+              <MappingFragment StoreEntitySet="ilceler">
+                <ScalarProperty Name="ilce_no" ColumnName="ilce_no" />
+                <ScalarProperty Name="ilce_isim" ColumnName="ilce_isim" />
+                <ScalarProperty Name="il_no" ColumnName="il_no" />
+                <ScalarProperty Name="ilce_akp_oy" ColumnName="ilce_akp_oy" />
+                <ScalarProperty Name="ilce_chp_oy" ColumnName="ilce_chp_oy" />
+                <ScalarProperty Name="ilce_mhp_oy" ColumnName="ilce_mhp_oy" />
+                <ScalarProperty Name="ilce_iyi_oy" ColumnName="ilce_iyi_oy" />
+                <ScalarProperty Name="ilce_saadet_oy" ColumnName="ilce_saadet_oy" />
+                <ScalarProperty Name="ilce_other" ColumnName="ilce_other" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="iller">
+            <EntityTypeMapping TypeName="local_electionsModel.iller">
+              <MappingFragment StoreEntitySet="iller">
+                <ScalarProperty Name="il_no" ColumnName="il_no" />
+                <ScalarProperty Name="il_isim" ColumnName="il_isim" />
+                <ScalarProperty Name="il_akp_oy" ColumnName="il_akp_oy" />
+                <ScalarProperty Name="il_chp_oy" ColumnName="il_chp_oy" />
+                <ScalarProperty Name="il_mhp_oy" ColumnName="il_mhp_oy" />
+                <ScalarProperty Name="il_ip_oy" ColumnName="il_ip_oy" />
+                <ScalarProperty Name="il_saadet_oy" ColumnName="il_saadet_oy" />
+                <ScalarProperty Name="il_other" ColumnName="il_other" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="local_electionsModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_ilce" ColumnName="user_ilce" />
+                <ScalarProperty Name="user_il" ColumnName="user_il" />
+                <ScalarProperty Name="user_tc" ColumnName="user_tc" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="user_fname" ColumnName="user_fname" />
+                <ScalarProperty Name="user_lname" ColumnName="user_lname" />
+                <ScalarProperty Name="user_gender" ColumnName="user_gender" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="isUsed" ColumnName="isUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="local_electionsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
